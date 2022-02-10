@@ -163,6 +163,9 @@ button:active {
 .timer-input:disabled {
 	color: var(--disabled-input-text);
 }
+.task-container .editing input[type="text"]{
+	color: var(--text-on-white);
+}
 .tasks {
 	border-radius: 10px;
 	margin: auto;

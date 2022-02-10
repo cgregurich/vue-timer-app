@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="task-container">
 		<div v-show="!isEditing" class="task not-editing">
 			<div class="task-name">{{ task.name }}</div>
 			<div class="icons">
@@ -104,6 +104,8 @@ export default {
 }
 .editing input {
 	font-size: 20px;
+	border-radius: 5px;
+	border: none;
 }
 
 </style>

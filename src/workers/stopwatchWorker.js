@@ -1,4 +1,5 @@
-const DELAY = 10;
+import {DEBUG} from '../utils/constants';
+const DELAY = DEBUG ? 10 : 1000;
 let secondsElapsed = 0;
 let intervalId;
 onmessage = function(e) {
