@@ -1,0 +1,20 @@
+
+TODO:
+- make a settings page with auto-track, volume, etc.
+- ask if session should be saved;
+tasks view should have: let's just do add tasks for now
+tasks: delete, edit, better visuals. make x's align so it's easy to delete many without moving cursor.
+- check for duplicate task names when adding??
+
+- an actual log
+- totals for tasks, days, weeks, etc.
+- delete sessions??
+** How to remember which task was selected? something about state? or vuex? ???
+
+- learn vuex??
+
+TIMER:
+- maybe make the clock display the inputs?? 
+bugs:
+- when start clock on 0, makes clock negative
+- add clock/time functionality like in the tkinter app
