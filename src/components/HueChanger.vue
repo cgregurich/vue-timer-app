@@ -15,7 +15,6 @@ export default {
 	},
 	mounted() {
 		const hue = getComputedStyle(document.documentElement).getPropertyValue('--hue');
-		console.log(hue);
 		this.hue = parseInt(hue);
 	},
 	methods: {

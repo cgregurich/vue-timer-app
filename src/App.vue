@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-		<button @click="test">TEST</button>
+		<!-- <button @click="test">TEST</button> -->
 		<div id="nav">
       <router-link class="router-link" to="/stopwatch">Stopwatch</router-link>
       <router-link class="router-link" to="/timer">Timer</router-link>
@@ -8,20 +8,22 @@
       <router-link class="router-link" to="/sessions">Sessions</router-link>
       <router-link class="router-link" to="/colors">Colors</router-link>
     </div>
-		<!-- <Popup /> -->
 		<router-view/>
   </div>
 </template>
 
 <script>
-// import Popup from './components/Popup';
 export default {
 	components: {
-		// Popup
+
 	},
 	methods: {
 		test() {
-			document.documentElement.style.setProperty("--hue", 10);
+			setInterval(() => {
+				const currentHue = getComputedStyle(document.documentElement).getPropertyValue('--hue');
+				console.log(currentHue);
+				document.documentElement.style.setProperty('--hue', parseInt(currentHue) + 1);
+			}, 10);
 		}
 	}
 }
@@ -40,20 +42,21 @@ export default {
 	--fg: hsl(var(--hue), 64%, 63%);
 	--disabled-input-text: hsl(var(--hue), 64%, 75%); 
 	--disabled-button-text: hsl(var(--hue), 64%, 85%);
-	--reset-icon: hsl(var(--hue), 64%, 40%);
-	--reset-icon-hover: hsl(var(--hue), 65%, 20%);
+	--colored-icon-hover: hsl(var(--hue), 65%, 20%);
 	--text-on-white: hsl(var(--hue), 64%, 50%);
 	--input-placeholder: hsl(var(--hue), 65%, 80%);
+	--colored-icon: hsl(var(--hue), 65%, 40%);
 }
 body {
 	background-color: var(--bg);
 }
 #nav {
-	margin-bottom: 15px;
+	margin: 15px 0 35px 0;
 	display: flex;
 	justify-content: center;
 }
 .router-link, .router-link:visited {
+	border-radius: 9px;
 	color: white;
 	font-family: Poppins;
 	font-size: 24px;
@@ -64,6 +67,9 @@ body {
 .router-link:hover {
 	background-color: var(--fg);
 	border-radius: 9px;
+}
+.router-link-active, .router-link-active:hover {
+	background-color: hsl(var(--hue), 64%, 68%);
 }
 .task-select > select {
 	background-color: var(--bg);
@@ -82,6 +88,7 @@ body {
 	font-family: "Azeret Mono";
 	font-size: 50px;
 	color: white;
+	margin: 20px 0;
 }
 .stopwatch {
 	background-color: var(--fg);
@@ -91,7 +98,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	border-radius: 10px;
-	padding: 15px;
+	padding: 15px 45px;
 }
 .timer {
 	background-color: var(--fg);
@@ -102,15 +109,15 @@ body {
 	flex-direction: column;
 	align-items: center;
 	border-radius: 10px;
-	padding: 15px;
+	padding: 15px 45px;
 }
 .timer .reset-icon {
 	font-size: 20px;
 	width: 30px;
-	color: var(--reset-icon);
+	color: var(--colored-icon);
 }
 .timer .reset-icon:hover {
-	color: var(--reset-icon-hover);
+	color: var(--colored-icon-hover);
 	transition: 0.5s color;
 }
 .stopwatch, .timer {
@@ -193,7 +200,7 @@ button:active {
 	background-color: var(--bg);
 	color: white;
 	border-radius: 5px;
-	border: 2px solid white;
+	border: none;
 	outline: none;
 	padding: 0 9px;
 }
@@ -207,4 +214,14 @@ button:active {
 	color: var(--text-on-white);
 	font-size: 40px;
 }
+.task .task-name {
+	color: white;
+}
+.icons > i {
+	color: var(--colored-icon);
+}
+.icons > i:hover {
+	color: var(--colored-icon-hover);
+}
+
 </style>

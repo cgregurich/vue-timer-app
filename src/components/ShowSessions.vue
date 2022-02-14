@@ -1,6 +1,13 @@
 <template>
 	<div class="show-sessions">
+		<button @click="sortSessions">Sort by Task</button>
 		<button @click="wipeSessions">Wipe Sessions</button>
+		<div class="totals">
+			<div class="total" v-for="task in Object.keys(totals)" :key="task">
+				<div class="task">{{ task }}</div>
+				<div class="time">{{ formatTime(totals[task]) }}</div>
+			</div>
+		</div>
 		<div class="session" v-for="session in sessions" :key="session.id">
 			<p>ID: {{ session.id }}</p>
 			<p>Task: {{ session.taskName }}</p>
@@ -19,12 +26,17 @@ export default {
 	data() {
 		return {
 			sessions: [],
+			totals: [],
 		};
 	},
 	async created() {
 		this.sessions = await api.fetchSessions(); 
+		this.totals = await api.getSessionTotals();
 	},
 	methods: {
+		async sortSessions() {
+			this.sessions = await api.fetchSessionsSortByTaskName();
+		},
 		formatTime(seconds) {
 			return formatSecondsAsHMS(seconds);
 		},
@@ -38,9 +50,15 @@ export default {
 </script>
 
 <style>
-	p {
-		margin: 0 0;
-		font-family: Poppins;
-		color: white;
-	}
+p {
+	margin: 0 0;
+	font-family: Poppins;
+	color: white;
+}
+.total {
+	width: max-content;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0px;
+}
 </style>

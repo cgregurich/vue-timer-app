@@ -71,9 +71,6 @@ export default {
 	padding: 5px 0;
 	justify-content: center;
 }
-.task-name {
-	color: white;
-}
 .icons {
 	color: white;
 	display: flex;
@@ -92,14 +89,12 @@ export default {
 	cursor: pointer;
 }
 .cancel-icon {
-	color: white;
 	cursor: pointer;
 }
 .save-icon {
-	color: white;
 	cursor: pointer;
 }
-.editing  i{
+.editing i{
 	font-size: 20px;
 }
 .editing input {

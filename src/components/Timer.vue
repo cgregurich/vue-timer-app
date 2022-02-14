@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { RUNNING, STOPPED, PAUSED, DEBUG} from '../utils/constants.js'; //eslint-disable-line no-unused-vars
+import { RUNNING, STOPPED, PAUSED} from '../utils/constants.js';
 import * as helpers from '../utils/helpers.js';
 import TaskSelect from './TaskSelect';
 import { timerWorker } from '../workers/worker-api.js';
@@ -32,9 +32,12 @@ export default {
 		return {
 			clockState: STOPPED,
 			startTimestamp: null,
-			enteredTime: {hour: 0, min: 0, sec: 10},
+			enteredTime: {hour: 0, min: 0, sec: 0},
 			secondsRemaining: 0,
 		};
+	},
+	mounted() {
+		this.secondsRemaining = this.enteredTimeAsSeconds;
 	},
 	created() {
 		this.setupWorkerListeners();

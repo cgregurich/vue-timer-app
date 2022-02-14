@@ -1,3 +1,13 @@
+issues/things to add:
+- pomodoro
+- changing views when a clock is running causes issues. say the stopwatch is running, and you click on timer, then click back to stopwatch. the clock will display 00:00:00 until the next stopwatch worker message comes through. Also, the clock state will be reset to stopped even though the worker is still running and the clock is visibly running.
+- weird off-centered flash message
+- trash view sessions page
+- doesn't remember color
+- doesn't have a legit backend
+- long task names
+- not much customizability (sounds, volume, autosave vs yes/no, notifications)
+- users
 
 TODO:
 - make a settings page with auto-track, volume, etc.

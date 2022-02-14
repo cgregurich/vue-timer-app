@@ -49,6 +49,25 @@ export async function fetchSessions() {
   return sessions;
 }
 
+export async function fetchSessionsSortByTaskName() {
+  let sessions = await fetchSessions();
+  console.log(sessions);
+  sessions.sort((a, b) => a.name < b.name);
+  return sessions.sort((a,b) => a.taskName < b.taskName ? -1 : 1);
+}
+
+export async function getSessionTotals() {
+  // returns object of format: {task1: <totalTime>, task2: <totalTime>}
+  const sessions = await fetchSessions();
+  const totals = {};
+  for (let session of sessions) {
+    if (totals[session.taskName]) totals[session.taskName] += session.timeElapsed; 
+    else totals[session.taskName] = session.timeElapsed;
+  }
+  console.log(totals);
+  return totals;
+}
+
 export async function addSession(session) {
   const res = await fetch('api/sessions', {
     method: 'POST',
